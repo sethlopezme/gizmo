@@ -1,6 +1,8 @@
 [package]
 name = "gizmo"
 version = "0.1.0"
-authors = ["Seth Lopez <seth@dynamit.com>"]
+authors = ["Seth Lopez <seth@sethlopez.me>"]
 
 [dependencies]
+docopt = "0.6"
+rustc-serialize = "0.3"
