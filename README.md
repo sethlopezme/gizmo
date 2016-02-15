@@ -1,4 +1,4 @@
-# pub-rs
+# Gizmo
 
 A static site generator written in Rust.
 
