@@ -1,4 +1,4 @@
-# Gizmo
+# Gizmo ![](https://travis-ci.org/sethlopezme/gizmo.svg)
 
 A static site generator written in Rust.
 
