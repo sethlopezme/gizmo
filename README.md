@@ -1,4 +1,4 @@
-# Gizmo ![](https://travis-ci.org/sethlopezme/gizmo.svg)
+# Gizmo [![Build Status](https://travis-ci.org/sethlopezme/gizmo.svg?branch=master)](https://travis-ci.org/sethlopezme/gizmo)
 
 A static site generator written in Rust.
 
