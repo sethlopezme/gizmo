@@ -47,8 +47,6 @@ fn main() {
             let path = subcmd.value_of("path").unwrap();
             let force = subcmd.is_present("force");
 
-            println!("Beep boop. Scaffolding your new site.");
-
             match scaffolder::scaffold(path, force) {
                 Ok(_) => println!("Beep boop. Scaffolding complete!"),
                 Err(e) => panic!("ERROR: {}", e),
@@ -56,6 +54,6 @@ fn main() {
         }
         ("generate", Some(subcmd)) => println!("Subcommand: {}", "generate"),
         ("serve", Some(subcmd)) => println!("Subcommand: {}", "serve"),
-        _ => panic!("Unknown subcommand."),
+        _ => panic!("Unknown subcommand"),
     };
 }
