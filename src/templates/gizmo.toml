@@ -1,0 +1,24 @@
+# Gizmo Config
+# ------------
+# Configure gizmo and set site-wide variables here.
+# New to TOML? Read the specification: https://github.com/toml-lang/toml
+
+# Put your site-wide variables below - whatever you want.
+title = "My Static Site"
+description = """\
+              This is your site description. \
+              It can be edited in the config.toml file.\
+              """
+
+# All Gizmo settings are required and represented below. Alter them as you wish.
+[generation]
+source = "./src"               # Site source path.
+target = "./gen"               # Path to place the generated site.
+drafts = "_drafts"             # Drafts path. Relative to source path.
+layouts = "_layouts"           # Layouts path. Relative to source path.
+partials = "_partials"         # Partials path. Relative to source path.
+posts = "_posts"               # Posts path. Relative to source path.
+url = "http://yourdomain.com"  # Your site URL. Required for permalinks.
+
+[server]
+port = "*"  # The local port to use.
