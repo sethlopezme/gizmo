@@ -4,6 +4,7 @@
 # New to TOML? Read the specification: https://github.com/toml-lang/toml
 
 # Put your site-wide variables below - whatever you want.
+[site]
 title = "My Static Site"
 description = """\
               This is your site description. \
