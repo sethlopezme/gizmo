@@ -1,3 +1,6 @@
+use std::process;
+use std::path::PathBuf;
+
 extern crate gizmo;
 use gizmo::scaffolder;
 
@@ -44,12 +47,15 @@ fn main() {
 
     match args.subcommand() {
         ("init", Some(subcmd)) => {
-            let path = subcmd.value_of("path").unwrap();
+            let path = PathBuf::from(subcmd.value_of("path").unwrap());
             let force = subcmd.is_present("force");
 
-            match scaffolder::scaffold(path, force) {
-                Ok(_) => println!("Beep boop. Scaffolding complete!"),
-                Err(e) => panic!("ERROR: {}", e),
+            match scaffolder::scaffold(&path, force) {
+                Ok(_) => println!("Beep boop. Scaffolding complete at \"{}\".", path.display()),
+                Err(e) => {
+                    println!("ERROR: {}", e);
+                    process::exit(1)
+                }
             }
         }
         ("generate", Some(subcmd)) => println!("Subcommand: {}", "generate"),
