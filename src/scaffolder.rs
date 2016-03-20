@@ -1,14 +1,12 @@
 use std::fs::{self, File};
 use std::io;
 use std::io::prelude::*;
-use std::path::{Path, PathBuf};
+use std::path::PathBuf;
 
-pub fn scaffold(path: &str, force: bool) -> io::Result<()> {
-    let base_path = Path::new(path).to_path_buf();
-
+pub fn scaffold(path: &PathBuf, force: bool) -> io::Result<()> {
     // check if it's safe to scaffold the new site by counting the children
-    if !force && base_path.exists() {
-        let iter = try!(base_path.read_dir());
+    if !force && path.exists() {
+        let iter = try!(path.read_dir());
 
         if iter.count() > 0 {
             let error = "The path exists and is not empty. To overwrite files in the path, run \
@@ -19,19 +17,19 @@ pub fn scaffold(path: &str, force: bool) -> io::Result<()> {
     }
 
     // create the directories and files
-    try!(create_dirs(&base_path));
-    try!(create_files(&base_path));
+    try!(create_dirs(&path));
+    try!(create_files(&path));
 
     Ok(())
 }
 
-fn create_dirs(base_path: &PathBuf) -> io::Result<()> {
-    let dirs = [base_path.to_path_buf(),
-                base_path.join("src"),
-                base_path.join("src/_drafts"),
-                base_path.join("src/_layouts"),
-                base_path.join("src/_partials"),
-                base_path.join("src/_posts")];
+fn create_dirs(path: &PathBuf) -> io::Result<()> {
+    let dirs = [path.to_path_buf(),
+                path.join("src"),
+                path.join("src/_drafts"),
+                path.join("src/_layouts"),
+                path.join("src/_partials"),
+                path.join("src/_posts")];
 
     for d in dirs.into_iter() {
         if !d.exists() {
@@ -42,10 +40,9 @@ fn create_dirs(base_path: &PathBuf) -> io::Result<()> {
     Ok(())
 }
 
-fn create_files(base_path: &PathBuf) -> io::Result<()> {
-    let files = [(base_path.join(".gitignore"),
-                  include_str!("templates/gitignore")),
-                 (base_path.join("gizmo.toml"),
+fn create_files(path: &PathBuf) -> io::Result<()> {
+    let files = [(path.join(".gitignore"), include_str!("templates/gitignore")),
+                 (path.join("gizmo.toml"),
                   include_str!("templates/gizmo.toml"))];
 
     for f in files.into_iter() {
